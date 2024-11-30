@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="Ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aling</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Gmarket+Sans:wght@900&display=swap" rel="stylesheet">
+  <!-- 두께 900 추가 -->
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/gh/leetaewook/gmarket-sans-dynamic-subset/GmarketSans.css" />
+
+  <style>
+    :root {
+      /* --site-max-width: 2048px; */
+      --site-max-width: 1140px;
+    }
+
+    .parent-container {
+      max-width: var(--site-max-width);
+      width: 100%;
+      height: 100%;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .navbar .parent-container {
+      justify-content: space-between;
+    }
+
+    /* Global Styles */
+    body {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 18px;
+      /* 기본 글꼴 크기 */
+      margin: 0;
+      padding: 0;
+    }
+
+    @keyframes slideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    /* Navigation Bar */
+    .navbar {
+      background-color: #ffffff;
+      /* 배경색을 흰색으로 설정 */
+      color: #000000;
+      /* 텍스트 색상 */
+      padding: 15px 20px;
+      /* 여백 설정 */
+      display: flex;
+      /* 플렉스 박스 사용 */
+      align-items: center;
+      /* 수직 중앙 정렬 */
+    }
+
+    .navbar-brand {
+      display: flex;
+      /* 플렉스 박스 사용 */
+      align-items: center;
+      /* 수직 중앙 정렬 */
+    }
+
+    .navbar-brand i {
+      margin-right: 10px;
+      /* 아이콘과 텍스트 간의 간격 */
+      font-size: 24px;
+      /* 아이콘 크기 */
+    }
+
+    .logo {
+      width: 20px;
+      /* 로고 이미지의 너비 */
+      height: 20px;
+      /* 로고 이미지의 높이 */
+      margin-right: 10px;
+      /* 텍스트와의 간격 */
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(to top, #FFD9D0, #ffffff),
+        url('img/mainimage.png');
+      /* 그래디언트와 이미지 배경 */
+      background-size: cover;
+      /* 배경 이미지 크기 설정 */
+      background-position: center;
+      /* 배경 이미지 위치 설정 */
+      color: #000;
+      /* 텍스트 색상 설정 */
+      padding: 0;
+      padding-top: 80px;
+      /* 여백 설정 */
+      text-align: center;
+      /* 텍스트 정렬 */
+      /* min-height: 600px; */
+      /* 최소 높이 설정 */
+      width: 100%;
+      /* 너비를 100%로 설정하여 화면 크기에 맞게 조정 */
+      margin: 0 auto;
+      /* 중앙 정렬 */
+      position: relative;
+      /* 자식 요소의 절대 위치 설정을 위해 */
+      overflow: hidden;
+      /* 자식 요소가 부모 요소를 넘지 않도록 */
+    }
+
+
+    .hero-image-container {
+      background: url('img/mainimage.png');
+      width: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: top;
+      height: 700px;
+      opacity: 0;
+      animation: slideUp 1.5s ease-out forwards;
+    }
+
+    .hero img {
+      opacity: 0;
+      animation: slideUp 1.5s ease-out forwards;
+    }
+
+    .hero img.visible {
+      opacity: 1;
+    }
+
+    .hero-title {
+      font-family: 'Gmarket Sans', sans-serif !important;
+      /* 폰트 변경 */
+      font-weight: 900;
+      /* 가장 두꺼운 두께 설정 */
+      font-size: 48px;
+      /* 제목 크기 */
+      margin-top: 20px;
+      /* 폰트의 마진 탑 설정 */
+      margin-bottom: 20px;
+      /* 제목 아래 여백 */
+      z-index: 0;
+      /* 버튼보다 뒤로 배치 */
+    }
+
+    .button-container {
+      margin-top: 80px;
+      /* 버튼의 마진 탑 설정 */
+      position: relative;
+      /* 버튼을 기준으로 이미지 배치 */
+      z-index: 1;
+      /* 이미지보다 앞에 위치 */
+    }
+
+    .app-button {
+      background-color: #000C1E;
+      /* 버튼 배경색 */
+      border: none;
+      opacity: 0.8;
+      /* 버튼 투명도 */
+      /* 테두리 없애기 */
+      color: #fff;
+      /* 버튼 글자색 */
+      padding: 12px 24px;
+      /* 버튼 패딩 */
+      text-decoration: none;
+      /* 밑줄 제거 */
+      font-size: 16px;
+      /* 버튼 폰트 크기 */
+      border-radius: 12px;
+      /* 버튼 모서리 둥글게 */
+      cursor: pointer;
+      /* 커서 모양 변경 */
+      margin: 10px;
+      /* 버튼 간의 간격 */
+      transition: background-color 0.3s ease, color 0.3s ease;
+      /* 호버 시 부드러운 전환 효과 */
+    }
+
+    .app-button:hover {
+      background-color: #ff4a22;
+      /* 호버 시 버튼 배경색 */
+    }
+
+    .hero img {
+      max-width: 300px;
+      /* 이미지 최대 너비 */
+      margin-bottom: 20px;
+      /* 이미지 아래 여백 */
+    }
+
+    .hero button i {
+      margin-right: 8px;
+      /* 아이콘과 텍스트 간의 간격 */
+    }
+
+
+
+    /* Highlight-section */
+    .highlight {
+      background-color: #F9FAFB;
+      /* 배경 색상 설정 */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 200px 0;
+    }
+
+
+    .highlight p {
+      font-size: 32px;
+      text-align: center;
+      font-weight: 500;
+      /* SemiBold 설정 */
+      color: #191f28;
+      line-height: 1.6;
+    }
+
+    /* Feature Section */
+    .feature {
+      display: flex;
+      /* 플렉스 박스 사용 */
+      justify-content: space-between;
+      /* 양쪽 영역 간의 간격 조정 */
+      padding: 250px 0;
+      /* padding: 250px 0; */
+      gap: 20px;
+      /* 요소 간의 간격 */
+      flex-direction: column;
+      /* 모바일에서는 세로로 배치 */
+    }
+
+    .left-section,
+    .right-section {
+      flex: 1;
+      /* 각 섹션이 동일한 비율로 공간 차지 */
+      display: flex;
+      flex-direction: column;
+      /* 세로 방향으로 정렬 */
+    }
+
+    .text-box1 {
+      background-color: transparent;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      box-shadow: none;
+    }
+
+    .text-box1 h3 {
+      color: #ff4a22;
+      font-size: 28px;
+      text-align: left;
+      font-weight: 700;
+      margin: 0;
+      margin-top: 10px;
+      margin-bottom: 30px;
+    }
+
+    .text-box1 h4 {
+      color: #000000;
+      font-size: 48px;
+      text-align: left;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    .text-box1 p {
+      color: #000000;
+      font-size: 23px;
+      text-align: left;
+      font-weight: 500;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+
+
+
+    .left-section img,
+    .right-section img {
+      max-width: 100%;
+      /* 최대 너비 설정 */
+      height: auto;
+      /* 비율 유지 */
+    }
+
+    .bottom-image {
+      margin-top: auto;
+      /* 아래쪽으로 밀어내기 */
+    }
+
+    .custom-feature {
+      display: flex;
+      /* 플렉스 박스 사용 */
+      justify-content: space-between;
+      /* 양쪽 영역 간의 간격 조정 */
+      padding: 40px 20px;
+      /* 여백 설정 */
+      flex-direction: column;
+    }
+
+    .left-section,
+    .right-section {
+      flex: 1;
+      /* 각 섹션이 동일한 비율로 공간 차지 */
+      display: flex;
+      flex-direction: column;
+      /* 세로 방향으로 정렬 */
+    }
+
+    .text-box2 {
+      padding: 20px;
+      /* 여백 */
+      margin-bottom: 20px;
+      /* 이미지 간격 */
+      border-radius: 5px;
+      /* 모서리 둥글게 */
+      background-color: ffffff;
+      /* 배경색 설정 (원하는 색상으로 변경 가능) */
+    }
+
+
+    .right-section img {
+      max-width: 100%;
+      /* 최대 너비 설정 */
+      height: auto;
+      /* 비율 유지 */
+    }
+
+
+    /* Feature custom Section */
+    .custom-feature3 {
+      display: flex;
+      /* 플렉스 박스 사용 */
+      justify-content: space-between;
+      /* 양쪽 영역 간의 간격 조정 */
+      padding: 40px 20px;
+      /* 여백 설정 */
+    }
+
+    .custom-left-section,
+    .custom-right-section {
+      flex: 1;
+      /* 각 섹션이 동일한 비율로 공간 차지 */
+      display: flex;
+      flex-direction: column;
+      /* 세로 방향으로 정렬 */
+
+    }
+
+    .custom-right-section {
+      justify-content: space-between;
+      /* 요소 간의 간격을 최대한 벌림 */
+    }
+
+    .text-box3 {
+      padding: 20px;
+      /* 여백 */
+      margin-top: 80px;
+      margin-bottom: 100px;
+      /* 이미지 간격 */
+      border-radius: 5px;
+      /* 모서리 둥글게 */
+      background-color: none;
+      /* 배경색 설정 */
+    }
+
+    .text-box3 h3 {
+      color: #ff4a22;
+      font-size: 20px;
+      text-align: left;
+      font-weight: 500;
+      margin: 0;
+      margin-bottom: 10px;
+    }
+
+    .text-box3 h4 {
+      color: #000000;
+      font-size: 36px;
+      text-align: left;
+      font-weight: 700;
+      margin: 0;
+      margin-bottom: 20px;
+    }
+
+    .text-box3 p {
+      color: #000000;
+      font-size: 22px;
+      text-align: left;
+      font-weight: 500;
+      margin: 0;
+      line-height: 1.5;
+
+    }
+
+
+    .underline {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+    }
+
+    .underline::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 15px;
+      background: #ff4a22;
+      transform: translateX(-100%);
+      transition: transform 1.5s ease;
+      z-index: -1;
+      /* 텍스트 뒤로 보내기 */
+
+    }
+
+    .underline.visible::after {
+      transform: translateX(0);
+    }
+
+    /*introduction*/
+
+
+    .introduction-title-section {
+      padding-top: 250px;
+      /* 여백 */
+      padding-bottom: 80px;
+      background-color: #F9FAFB;
+      /* 배경색 설정 */
+
+    }
+
+    .introduction-title-section h1 {
+      font-size: 28px;
+      color: #ff4a22;
+      /* 제목 색상 */
+      text-align: left;
+      /* 중앙 정렬 */
+    }
+
+    .introduction-title-section h2 {
+      font-size: 50px;
+      color: #191F28;
+      /* 부제목 색상 */
+      text-align: left;
+      /* 좌측 정렬 */
+      line-height: 1.4;
+    }
+
+    .introduction {
+      flex: 1;
+      /* 각 섹션이 동일한 비율로 공간 차지 */
+      display: flex;
+      /* 플렉스 박스 사용 */
+      flex-direction: column;
+      /* 좌우로 배치 */
+      gap: 20px;
+      /* 요소 간의 간격 */
+      padding: 0px;
+      /* 여백 설정 */
+      background-color: #F9FAFB;
+      /* 배경색 설정 */
+      justify-content: center;
+      /* 수평 중앙 정렬 */
+      align-items: center;
+      /* 수직 중앙 정렬 */
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+
+    .introduction-left-section,
+    .introduction-right-section {
+      flex: 1;
+      /* 각 섹션이 동일한 비율로 공간 차지 */
+      display: flex;
+      flex-direction: column;
+      /* 세로 방향으로 정렬 */
+      justify-content: center;
+      /* 수평 중앙 정렬 */
+    }
+
+    .introduction-left-section2,
+    .introduction-right-section2 {
+      flex: 1;
+      /* 각 섹션이 동일한 비율로 공간 차지 */
+      display: flex;
+      flex-direction: column;
+      /* 세로 방향으로 정렬 */
+      justify-content: center;
+      /* 수평 중앙 정렬 */
+    }
+
+    .introduction.reverse-by-size .parent-container {
+      flex-direction: column-reverse;
+    }
+
+    .text-box4 {
+      background-color: none;
+      /* 배경색 설정 */
+      transition: background-color 0.3s;
+      /* 배경색 전환 효과 */
+      align-items: center;
+      /* 수직 중앙 정렬 */
+      justify-content: center;
+      /* 수평 중앙 정렬 */
+      line-height: 1.4;
+      /* gap:12px; */
+    }
+
+
+    .text-box4 h2 {
+      font-size: 20px;
+      /* 제목 크기 */
+      font-weight: 500px;
+      /* 폰트 굵기 */
+      color: #ff4a22;
+      /* 제목 색상 */
+      margin: 0;
+      /* 기본 마진 제거 */
+      margin-bottom: 12px;
+
+    }
+
+    .text-box4 h3 {
+      font-size: 40px;
+      /* 제목 크기 */
+      font-weight: 500px;
+      /* 폰트 굵기 */
+      color: #191F28;
+      /* 제목 색상 */
+      margin: 0;
+      /* 기본 마진 제거 */
+      margin-bottom: 20px;
+    }
+
+    .text-box4 p {
+      font-size: 22px;
+      /* 설명글 크기 */
+      color: #333;
+      /* 설명글 색상 */
+    }
+
+    .text-box4.highlighted {
+      background-color: #F9FAFB;
+      /* 강조된 배경색 */
+    }
+
+    .left-section img {
+      max-width: 100%;
+      /* 최대 너비 설정 */
+      height: auto;
+      /* 비율 유지 */
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .plan-section {
+      padding-top: 250px;
+      /* 여백 */
+
+    }
+
+    .plan-section h1 {
+      font-size: 28px;
+      color: #ff4a22;
+      /* 제목 색상 */
+      text-align: left;
+      /* 중앙 정렬 */
+
+    }
+
+    .plan-section h2 {
+      font-size: 50px;
+      color: #191F28;
+      /* 부제목 색상 */
+      text-align: left;
+      /* 좌측 정렬 */
+      line-height: 1.4;
+      margin-bottom: 80px;
+    }
+
+
+    .card-section {
+      display: flex;
+      flex-direction: column;
+      /* 세로 방향으로 배치 */
+      gap: 20px;
+      /* 카드 간의 간격 */
+      padding-bottom: 250px;
+    }
+
+    .card-container {
+      display: flex;
+      /* 카드 컨테이너를 플렉스박스로 설정 */
+      justify-content: space-between;
+      /* 카드 간의 간격 조정 */
+      flex-wrap: wrap;
+      /* 여러 줄로 카드 배치 */
+    }
+
+    .card {
+      background-color: none;
+      /* 카드 배경색 */
+      border-radius: 8px;
+      /* 모서리 둥글게 */
+      padding: 20px;
+      /* 카드 내부 여백 */
+      flex: 1 1 calc(50% - 20px);
+      /* 카드가 동일한 비율로 공간 차지 */
+      /* 카드가 동일한 비율로 공간 차지 */
+      text-align: left;
+      /* 텍스트 중앙 정렬 */
+      width: 100%;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+
+    .card-image {
+      width: 100px;
+      /* 이미지 영역 너비 */
+      height: 100px;
+      /* 이미지 영역 높이 */
+      margin-bottom: 10px;
+      /* 이미지와 텍스트 간의 여백 */
+    }
+
+    .card h2 {
+      font-size: 28px;
+      /* 제목 크기 */
+      color: #191F28;
+      /* 제목 색상 */
+      margin: 0;
+      /* 기본 마진 제거 */
+    }
+
+    .card p {
+      font-size: 22px;
+      /* 설명글 크기 */
+      color: #333;
+      /* 설명글 색상 */
+    }
+
+    .image-fade-in {
+      opacity: 0;
+      /* 초기 투명도 */
+      transform: translateY(50px);
+      /* 아래에서 시작 */
+      transition: opacity 1.5s ease, transform 1.5s ease;
+      /* 애니메이션 효과 */
+    }
+
+    .image-fade-in.visible {
+      opacity: 1;
+      /* 완전 표시 */
+      transform: translateY(0);
+      /* 원래 위치로 이동 */
+    }
+
+    /* App Download Section */
+
+    .download {
+      background-color: #ffede9;
+      color: #121212;
+      text-align: center;
+      /* 전체 영역 내에서 가운데 정렬 */
+      padding: 200px 0;
+    }
+
+    .download-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* 수직 중앙 정렬 */
+      justify-content: space-between;
+      /* 텍스트와 이미지를 좌우 끝으로 정렬 */
+      /* gap: 300px; */
+      /* 텍스트와 이미지 사이 간격 */
+      width: 100%;
+    }
+
+    .download-text {
+      flex: 1;
+      /* 텍스트가 더 많은 공간을 차지하도록 설정 가능 */
+      text-align: left;
+      /* 텍스트 왼쪽 정렬 */
+      font-size: 40px;
+      font-weight: 900px;
+    }
+
+    .download-text p {
+      flex: 1;
+      /* 텍스트가 더 많은 공간을 차지하도록 설정 가능 */
+      text-align: left;
+      /* 텍스트 왼쪽 정렬 */
+      font-size: 24px;
+      line-height: 1.4;
+    }
+
+    .download-image {
+      display: flex;
+      /* Flexbox를 사용하여 가로 정렬 */
+      flex-wrap: wrap;
+      /* 줄 바꿈 허용 */
+      justify-content: flex-end;
+      /* 이미지를 오른쪽 정렬 */
+      align-items: flex-start;
+      /* 세로 정렬(필요에 따라 조정 가능) */
+      gap: 10px;
+      /* 이미지 간의 간격 */
+      position: relative;
+      /* 위치 설정 */
+      overflow: hidden;
+      /* 넘치는 부분 숨기기 */
+      width: 320px;
+      /* 원하는 너비 설정 */
+      height: 670px;
+      /* 원하는 높이 설정 (이미지 크기에 맞게 조정) */
+
+    }
+
+    .download-image img {
+      position: absolute;
+      /* 절대 위치로 설정 */
+      width: 100%;
+      /* 너비 100% */
+      height: auto;
+      /* 비율에 맞춰 높이 자동 조정 */
+      opacity: 0;
+      /* 초기 상태에서 투명 */
+      transition: opacity 0.5s ease;
+      /* 애니메이션 효과 */
+    }
+
+    .download-image img.active {
+      opacity: 1;
+      /* 활성화된 이미지만 보이도록 */
+    }
+
+    .button-container2 {
+      margin-top: 20px;
+      /* 버튼의 마진 탑 설정 */
+      position: relative;
+      /* 버튼을 기준으로 이미지 배치 */
+      z-index: 1;
+      /* 이미지보다 앞에 위치 */
+    }
+
+    .app-button2 {
+      background-color: #121212;
+      /* 기본 버튼 색상 */
+      color: #fff;
+      /* 텍스트 색상 */
+      border: none;
+      /* 테두리 제거 */
+      border-radius: 12px;
+      /* 버튼 모서리 둥글게 */
+      padding: 12px 16px;
+      /* 버튼 크기 조정 */
+      font-size: 16px;
+      /* 텍스트 크기 */
+      cursor: pointer;
+      /* 마우스 커서 포인터로 변경 */
+      transition: background-color 0.3s ease;
+      /* 색상 변화 애니메이션 */
+      margin: 8px;
+      /* 버튼 가로 길이 설정 */
+    }
+
+    .app-button2:hover {
+      background-color: #ff4a22;
+      /* 호버 시 색상 */
+      color: #ffffff;
+    }
+
+
+
+    /* Footer */
+    footer {
+      background-color: #191F28;
+      color: #fff;
+      text-align: left;
+      font-size: 13px;
+      padding: 50px 50px 100px;
+      line-height: 1.6;
+    }
+
+
+
+
+    /* 태블릿 미디어 쿼리 (768px 이상) */
+    @media screen and (min-width: 768px) {
+
+      .card-container,
+      .feature,
+      .plan-section,
+      .text-box1,
+      .introduction-right-section2,
+      .introduction-title-section h1,
+      .introduction-title-section h2,
+      .introduction-left-section,
+      .introduction-right-section,
+      .footer {
+        padding-inline: 50px;
+      }
+
+      .hero-title {
+        font-size: 60px;
+      }
+
+      .highlight p {
+        font-size: 28px;
+      }
+
+      .feature {
+        padding: 0;
+        padding-top: 100px;
+      }
+
+      .feature .parent-container {
+        flex-direction: row;
+      }
+
+      .custom-feature .parent-container {
+        flex-direction: row;
+      }
+
+
+      .introduction .parent-container {
+        flex-direction: row;
+      }
+
+      .introduction-title-section {
+        padding-top: 100px;
+      }
+
+      .download .parent-container {
+        flex-direction: row;
+      }
+
+      .download {
+        padding-top: 200px;
+        padding-inline: 50px;
+        padding-bottom: 200px;
+      }
+
+
+      .introduction.reverse-by-size .parent-container {
+        flex-direction: row;
+      }
+
+      .card-section .parent-container {
+        flex-direction: row;
+      }
+
+
+      .text-box1 p {
+        font-size: 23px;
+      }
+
+      .text-box3 h3 {
+        font-size: 23px;
+      }
+
+      .text-box4 h3 {
+        font-size: 40px;
+      }
+
+
+      .text-box4 p {
+        font-size: 23px;
+      }
+
+      .introduction-title-section h1 {
+        font-size: 28px;
+      }
+
+      .introduction-title-section h2 {
+        font-size: 50px;
+      }
+
+      .download-content {
+        flex-direction: row;
+        text-align: left;
+      }
+
+
+
+    }
+
+    /* 데스크톱 미디어 쿼리 (1024px 이상) */
+    @media screen and (min-width: 1024px) {
+
+      .feature img {
+        width: 600px;
+      }
+
+      .hero-title {
+        font-size: 72px;
+      }
+
+      .highlight p {
+        font-size: 32px;
+      }
+
+      .custom-feature3 .parent-container {
+        flex-direction: row;
+      }
+
+      .text-box1 h4,
+      .text-box3 h4 {
+        font-size: 44px;
+      }
+    }
+
+    /* 작은 모바일 화면 (480px 미만) */
+    @media screen and (max-width: 480px) {
+      .hero-title {
+        font-size: 36px;
+      }
+
+      .hero-image-container {
+        height: 200px;
+      }
+
+      .highlight {
+        padding: 100px 50px;
+      }
+
+      .highlight p {
+        font-size: 20px;
+      }
+
+
+      .feature {
+        padding: 0;
+        padding-top: 100px;
+        gap: 20px;
+        /* 요소 간의 간격 */
+        margin-left: 24px;
+        margin-right: 24px;
+      }
+
+      .text-box1 h4,
+      .text-box3 h4 {
+        font-size: 24px;
+      }
+
+      .text-box3 p {
+        font-size: 17px;
+
+      }
+
+      .introduction-title-section {
+        padding-top: 100px;
+        padding-bottom: 0;
+      }
+
+      .introduction-title-section h1 {
+        font-size: 18px;
+      }
+
+      .introduction-title-section h2 {
+        font-size: 28px;
+      }
+
+      .app-button {
+        font-size: 14px;
+        padding: 10px 16px;
+      }
+
+      .navbar {
+        padding: 10px;
+      }
+
+      .text-box1,
+      .text-box2,
+      .text-box3,
+      .text-box4 {
+        margin-left: 0;
+        padding: 0;
+      }
+
+      .text-box1 p {
+        font-size: 17px;
+      }
+
+      .text-box3 h3 {
+        font-size: 17px;
+      }
+
+      .text-box4 h3 {
+        font-size: 24px;
+      }
+
+      .text-box4 p {
+        font-size: 17px;
+      }
+
+      .introduction {
+        flex-direction: column;
+        /* 세로 방향으로 정렬 */
+      }
+
+      .introduction-left-section,
+      .introduction-right-section {
+        flex: 1;
+        /* 여전히 동일한 비율로 공간 차지 */
+      }
+
+      .card h2 {
+        font-size: 18px;
+
+      }
+
+      .card p {
+        font-size: 16px;
+
+      }
+
+
+      .download-image {
+        width: 90vw;
+        height: calc(90vw * 2.1);
+      }
+
+      .footer {
+        padding: 20px;
+        font-size: 13px;
+      }
+    }
+
+    /* 이미지 반응형 처리 */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* 간격 조정 */
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* 작은 모바일 화면 (480px 미만) */
+    @media screen and (max-width: 768px) {
+      .hero-image-container {
+        height: 400px;
+      }
+
+      .feature {
+        /* padding: 200px 40px 40px 200px; */
+        padding-top: 80px;
+        padding-inline: 40px;
+        padding-bottom: 0;
+      }
+
+      .introduction-title-section,
+      .introduction {
+        padding-top: 100px;
+        padding-inline: 40px;
+        padding-bottom: 0;
+      }
+
+      .introduction.paddingbottom100 {
+        padding-bottom: 100px;
+      }
+
+
+      .highlight,
+      footer {
+        /* padding: 200px 40px 40px 200px; */
+        padding-top: 100px;
+        padding-inline: 40px;
+        padding-bottom: 100px;
+
+      }
+
+      .plan-section {
+        padding-top: 100px;
+        padding-inline: 40px;
+      }
+
+      .download {
+        padding-top: 100px;
+        padding-inline: 40px;
+        padding-bottom: 100px;
+      }
+
+      .download-text {
+        font-size: 24px;
+      }
+
+      .download-text p {
+        font-size: 17px;
+      }
+
+      .download-image {
+        width: 40vw;
+        height: calc(40vw * 2.1);
+      }
+
+      .app-button2 {
+        font-size: 14px;
+        padding: 10px 16px;
+      }
+
+      .download-content {
+        gap: 100px;
+      }
+
+      .card-section {
+        padding-inline: 40px;
+        padding-bottom: 100px;
+      }
+
+      .plan-section h1 {
+        font-size: 18px;
+
+      }
+
+      .plan-section h2 {
+        font-size: 28px;
+      }
+
+    }
+
+    /* 네비게이션 바 반응형 */
+    @media screen and (max-width: 768px) {
+      .navbar-brand span {
+        font-size: 16px;
+      }
+
+      .logo {
+        width: 16px;
+        height: 16px;
+      }
+
+    }
+
+    /* 푸터 반응형 */
+    @media screen and (max-width: 768px) {
+      footer {
+        text-align: left;
+      }
+
+      footer p {
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="parent-container">
+      <div class="navbar-brand">
+        <img src="img/alinglogo.png" alt="Logo" class="logo"> <!-- 로고 이미지 -->
+        <span>알링</span> <!-- 브랜드 이름 -->
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="parent-container">
+      <h1 class="hero-title">광고를 쇼핑처럼<br>간편하게, 알링</h1>
+      <div class="button-container">
+        <button class="app-button" onclick="goToAppStore()"><i class="fas fa-apple-alt"></i> App Store</button>
+        <button class="app-button" onclick="goToGooglePlay()"><i class="fab fa-google-play"></i> Google Play</button>
+      </div>
+      <!-- <img src="img/mainimage.png" alt="Hero Image" class="visible"> -->
+      <div class="hero-image-container"></div>
+
+    </div>
+  </section>
+
+
+  <!-- Highlight Sections -->
+  <section class="highlight">
+    <div class="parent-container">
+      <p>알링과 함께라면 광고도 쇼핑 처럼 간편해집니다.
+        <br>복잡한 절차 없이 간편하게 광고 예약, 결제를 처리하세요.
+        <br>간편한 광고, 지금 시작해보세요.
+      </p>
+    </div>
+  </section>
+
+  <section class="feature">
+    <div class="parent-container">
+      <div class="left-section">
+        <div class="text-box1">
+          <h3>간단한 광고 결제</h3>
+          <h4>초 간단 인플루언서<br>서칭/예약/결제 프로세스</h4>
+        </div>
+        <img src="img/homeimage5.png" alt="Feature Image 1" class="top-image image-fade-in">
+      </div>
+      <div class="right-section">
+        <img src="img/homeimage7.png" alt="Feature Image 2" class="top-image image-fade-in">
+        <div class="text-box1">
+          <p><strong>막막한 가게 홍보 마케팅</strong><br>
+            인플루언서 <strong>일정확인</strong>부터 <strong>세금계산서</strong>까지 한눈에!<br>
+            빠른 응답과 카드결제로 광고 준비를 초간단으로 끝내세요!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Custom Feature Section -->
+  <section class="feature custom-feature">
+    <div class="parent-container">
+      <div class="left-section">
+        <div class="text-box1">
+          <h3>맞춤 인플루언서 추천</h3>
+          <h4>9가지 맞춤정보 입력하면<br>딱, 맞는 인플루언서<br>알아서 추천해줘요!</h4>
+        </div>
+      </div>
+      <div class="right-section">
+        <img src="img/homeimage3.png" alt="Feature Image" class="top-image image-fade-in"> <!-- 여기에 이미지를 추가 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Section 3 -->
+  <section class="feature custom-feature3">
+    <div class="parent-container">
+      <div class="custom-left-section">
+        <img src="img/homeimage6.png" alt="Feature Image" class="top-image image-fade-in"> <!-- 왼쪽에 이미지를 추가 -->
+      </div>
+      <div class="custom-right-section">
+        <div class="text-box3">
+          <h3>카드결제까지</h3>
+          <p>자영업자들의 현금 고민 우리가 잘 알죠.<br>인플루언서 광고 결제도 이제 스마트하게 하세요!</p>
+        </div>
+        <div class="text-box3">
+          <h4><span class="underline">카드결제, 간편결제 뭐든 OK!</span><br>
+            <span class="underline">사업자에 따른 세금처리도!</span>
+          </h4>
+          <p>사업자 유무에 따라 세금계산서를 받을지,<br>원천징수 할지 고민되시죠? 🤔 <br>작은 비용처리도 놓치지 않게 알링이 미리 도와드려요</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Introduction -->
+  <section class="introduction-title-section fade-in">
+    <div class="parent-container">
+      <h1>필수, 인플루언서 마케팅</h1>
+      <h2>간편하고, 안전하게<br>'알링'과 함께 시작하세요</h2>
+    </div>
+  </section>
+
+  <!-- Introduction -->
+  <section class="introduction">
+    <div class="parent-container">
+      <div class="introduction-left-section fade-in">
+        <div class="text-box4">
+          <h2 style="margin-right: 16px; display: flex; flex-direction: row; align-items: center;">
+            <i class="fas fa-cart-shopping" style="font-size: 20px; margin-right: 8px;"></i>
+
+            <!-- <span style="font-size: 18px; vertical-align: middle;"> -->
+            빠르고 간편한 거래
+            <!-- </span> -->
+          </h2>
+          <h3>막막한<br>인플루언서 마케팅</h3>
+          <p>바쁜 사장님을 위해 여러 플랫폼의<br>인플루언서들의 포트폴리오를 한눈에!<br>빠르게 서칭하고 정확한 홍보 전문가를 매칭해드려요</p>
+        </div>
+      </div>
+      <div class="introduction-right-section fade-in">
+        <img src="img/card1.png" alt="Feature Image" class="top-image">
+      </div>
+    </div>
+  </section>
+
+  <section class="introduction reverse-by-size fade-in">
+    <div class="parent-container">
+      <div class="introduction-left-section2 fade-in">
+        <img src="img/card2.png" alt="Feature Image" class="top-image">
+      </div>
+      <div class="introduction-right-section2 fade-in">
+        <div class="text-box4">
+          <h2 style="display: flex; flex-direction: row; align-items: center;">
+            <i class="fas fa-shield-alt" style="font-size: 20px; vertical-align: middle; margin-right: 8px;"></i>
+            세금까지 신경 쓰는 '알링'
+          </h2>
+          <h3>인플루언서와 안전한 결제</h3>
+          <p>알링을 통해 개인간의 직거래의 위험을 낮춰요<br>거래사업자에 따라 세금까지 자동으로<br>신경써요</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="introduction fade-in paddingbottom100">
+    <div class="parent-container">
+      <div class="introduction-left-section fade-in">
+        <div class="text-box4">
+          <h2 style="display: flex; flex-direction: row; align-items: center;">
+            <i class="fa-solid fa-file-contract"
+              style="font-size: 20px; vertical-align: middle; margin-right: 8px;"></i>
+            확실한 거래
+          </h2>
+          <h3>시간, 상품, 금액<br>확실하게</h3>
+          <p>정확한 시간, 상품, 금액으로 거래를 제안해요<br>홍보 마케팅에 불필요한 시간을 줄일 수 있어요</p>
+        </div>
+      </div>
+      <div class="introduction-right-section fade-in">
+        <img src="img/card3.png" alt="Feature Image" class="top-image">
+      </div>
+    </div>
+  </section>
+
+  <!-- App Download Section -->
+  <section class="download">
+    <div class="parent-container">
+      <div class="download-content">
+        <div class="download-text">
+          <p>내 가게<br>쉽게 알리는 '알링'</p>
+          <h2>앱 다운로드</h2>
+          <div class="button-container2">
+            <button class="app-button2" onclick="goToAppStore()"><i class="fas fa-apple-alt"></i> App Store</button>
+            <button class="app-button2" onclick="goToGooglePlay()"><i class="fab fa-google-play"></i> Google
+              Play</button>
+          </div>
+        </div>
+        <div class="download-image">
+          <img src="img/mobile1.png" alt="App Download Background">
+          <img src="img/mobile2.png" alt="App Download Background">
+          <img src="img/mobile3.png" alt="App Download Background">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plan Section -->
+  <section class="plan-section fade-in">
+    <div class="parent-container">
+      <h1>앞으로의 계획</h1>
+      <h2>'알링' 베타 서비스의<br>성공적인 런칭이 끝나면<br>다음을 이렇게 준비할 예정이예요 🤗</h2>
+    </div>
+  </section>
+
+
+
+  <!-- Card Section -->
+  <section class="card-section">
+    <div class="parent-container">
+      <div class="card-container">
+        <div class="card fade-in">
+          <img src="img/diagram.png" alt="Diagram" class="card-image"> <!-- 이미지 영역 -->
+          <h2>광고 성과 분석</h2> <!-- 제목 -->
+          <p>바쁜 사장님들이 광고 게시 후<br>성과가 궁금하시죠?<br>알링이 광고 성과 분석을 준비하고 있어요</p> <!-- 설명글 -->
+        </div>
+        <div class="card fade-in">
+          <img src="img/subscription-model.png" alt="subscription-model" class="card-image"> <!-- 이미지 영역 -->
+          <h2>구독 모델</h2> <!-- 제목 -->
+          <p>알링 구독 모델이 생길거예요<br>인플루언서들을 모아서<br>체험단을 꾸려서 알아서 보내드릴게요</p> <!-- 설명글 -->
+        </div>
+      </div>
+
+      <div class="card-container">
+        <div class="card fade-in">
+          <img src="img/coin.png" alt="coin" class="card-image"> <!-- 이미지 영역 -->
+          <h2>추천포인트</h2> <!-- 제목 -->
+          <p>비즈니스 회원들도 서로 추천해주면 이득<br>알링 플랫폼을 이용해 적극적으로 홍보활동을 하는<br>인플루언서에게는 커미션을 추가로 지급해드려요</p> <!-- 설명글 -->
+        </div>
+        <div class="card fade-in">
+          <img src="img/web-page.png" alt="web-page" class="card-image"> <!-- 이미지 영역 -->
+          <h2>소셜로그인</h2> <!-- 제목 -->
+          <p>가입도 스마트하고<br>간편하게 이용할 수 있게 준비중이예요</p> <!-- 설명글 -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <footer>
+    <div class="parent-container">
+      <p>&copy; 2024 Aling. All rights reserved.</p>
+      <p>주식회사 오늘같은날 | 상호명 : 주식회사 오늘같은날 | 사업자등록번호 : 794-87-03480 | 대표자명 : 우수원</p>
+      <p>주소 : 부산광역시 부산진구 전포대로176번길 25, 1층(전포동) | 전화번호 : 010-3288-0626</p>
+      <p>
+        <a href="https://www.aling.co.kr/users/terms-of-service-business/" target="_blank"
+          style="color: #fff;">이용약관(비즈니스)</a> |
+        <a href="https://www.aling.co.kr/users/terms-of-service-influencer/" target="_blank"
+          style="color: #fff;">이용약관(인플루언서)</a> |
+        <a href="https://www.aling.co.kr/users/terms-of-service/" target="_blank" style="color: #fff;">서비스운영정책</a> |
+        <a href="https://www.aling.co.kr/users/privacy-policy/" target="_blank" style="color: #fff;">개인정보처리방침</a>
+      </p>
+    </div>
+  </footer>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const images = document.querySelectorAll('.image-fade-in');
+      const underlineElements = document.querySelectorAll('.underline'); // underline 요소 선택
+      const fadeInElements = document.querySelectorAll('.fade-in'); // fade-in 요소 선택
+      const slides = document.querySelectorAll('.download-image img');
+      let currentIndex = 0;
+
+      function checkScroll() {
+        // 이미지의 위치 확인
+        images.forEach(image => {
+          const rect = image.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom >= 0) {
+            image.classList.add('visible'); // 스크롤 시 클래스 추가
+          }
+        });
+
+        // underline 요소의 위치 확인
+        underlineElements.forEach(underline => {
+          const rect = underline.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom >= 0) {
+            underline.classList.add('visible'); // 스크롤 시 클래스 추가
+          }
+        });
+
+        // fade-in 요소 위치 확인
+        fadeInElements.forEach((element, index) => {
+          const rect = element.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom >= 0) {
+            setTimeout(() => {
+              element.classList.add('visible');
+            }, index * 30); // 각 요소마다 0.03초 간격으로 실행
+          }
+        });
+      }
+
+      window.addEventListener('scroll', checkScroll);
+      checkScroll(); // 초기 체크
+
+      // 첫 번째 슬라이드 활성화
+      showSlide(currentIndex);
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.remove('active'); // 모든 슬라이드 비활성화
+          if (i === index) {
+            slide.classList.add('active'); // 현재 슬라이드 활성화
+          }
+        });
+      }
+
+      function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length; // 인덱스를 증가시켜 다음 슬라이드로
+        showSlide(currentIndex);
+      }
+
+      // 3초마다 슬라이드 변경
+      setInterval(nextSlide, 3000);
+    });
+
+    function goToAppStore() {
+      window.location.href = 'https://apps.apple.com/kr/app/%EC%95%8C%EB%A7%81/id6737599709'; // 여기에 앱스토어 URL 입력
+    }
+
+    function goToGooglePlay() {
+      window.location.href = 'https://play.google.com/store/apps/details?id=com.siimtech.aling'; // 여기에 구글 플레이 URL 입력
+    }
+
+
+    
+  </script>
+
+</body>
+
+</html>
