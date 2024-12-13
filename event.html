@@ -116,24 +116,38 @@
 
 
   <script>
-
-      // 서버로 데이터를 전송하려면 아래 주석을 제거하고 구현하세요.
-      const formData = new FormData(e.target);
-      fetch('https://www.aling.co.kr/event/create-event-participation/', {
-        method: 'POST',
-        body: formData,
-      }).then((response) => {
-        console.log("response:", response)
-        localStorage.setItem('eventParticipated', 'true');
-        alert('이벤트에 참여해주셔서 감사합니다!');
-      })
-
-        .catch((error) => {
-          console.log("error:", error)
-          window.alert("실패했습니다.")
+    // 폼 제출 이벤트 핸들러
+    document.getElementById('eventForm').addEventListener('submit', async function (e) {
+      e.preventDefault(); // 기본 폼 제출 동작 중지
+  
+      const formData = new FormData(e.target); // 폼 데이터 가져오기
+  
+      try {
+        const response = await fetch('https://www.aling.co.kr/event/create-event-participation/', {
+          method: 'POST',
+          body: formData,
         });
-    
+  
+        // 응답 처리
+        if (!response.ok) {
+          const errorData = await response.json(); // 서버에서 반환된 JSON 파싱
+          if (errorData.detail) {
+            alert(`오류: ${errorData.detail}`); // 오류 메시지 표시
+          } else {
+            alert('오류가 발생했습니다.');
+          }
+        } else {
+          console.log('response:', response);
+          alert('이벤트에 참여해주셔서 감사합니다!');
+        }
+      } catch (error) {
+        // 네트워크 오류 또는 기타 예외 처리
+        console.log('error:', error);
+        alert('실패했습니다. 네트워크 상태를 확인해주세요.');
+      }
+    });
   </script>
+  
 </body>
 
 </html>
