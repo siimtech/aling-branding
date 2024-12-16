@@ -808,6 +808,8 @@
       /* 색상 변화 애니메이션 */
       margin: 8px;
       /* 버튼 가로 길이 설정 */
+      text-decoration: none;
+      /* 밑줄 제거 */
     }
 
     .app-button2:hover {
@@ -1214,9 +1216,16 @@
     <div class="parent-container">
       <h1 class="hero-title">광고를 쇼핑처럼<br>간편하게, 알링</h1>
       <div class="button-container">
-        <button class="app-button" onclick="goToAppStore()"><i class="fas fa-apple-alt"></i> App Store</button>
-        <button class="app-button" onclick="goToGooglePlay()"><i class="fab fa-google-play"></i> Google Play</button>
+        <!-- App Store Link -->
+        <a class="app-button" href="https://apps.apple.com/kr/app/%EC%95%8C%EB%A7%81/id6737599709" target="_blank">
+          <i class="fas fa-apple-alt"></i> App Store
+        </a>
+        <!-- Google Play Link -->
+        <a class="app-button" href="https://play.google.com/store/apps/details?id=com.siimtech.aling" target="_blank">
+          <i class="fab fa-google-play"></i> Google Play
+        </a>
       </div>
+      
       <!-- <img src="img/mainimage.png" alt="Hero Image" class="visible"> -->
       <div class="hero-image-container"></div>
 
@@ -1366,10 +1375,15 @@
           <p>내 가게<br>쉽게 알리는 '알링'</p>
           <h2>앱 다운로드</h2>
           <div class="button-container2">
-            <button class="app-button2" onclick="goToAppStore()"><i class="fas fa-apple-alt"></i> App Store</button>
-            <button class="app-button2" onclick="goToGooglePlay()"><i class="fab fa-google-play"></i> Google
-              Play</button>
-          </div>
+            <!-- App Store Link -->
+            <a class="app-button2" href="https://apps.apple.com/kr/app/%EC%95%8C%EB%A7%81/id6737599709" target="_blank">
+              <i class="fas fa-apple-alt"></i> App Store
+            </a>
+            <!-- Google Play Link -->
+            <a class="app-button2" href="https://play.google.com/store/apps/details?id=com.siimtech.aling" target="_blank">
+              <i class="fab fa-google-play"></i> Google Play
+            </a>
+          </div>          
         </div>
         <div class="download-image">
           <img src="img/mobile1.png" alt="App Download Background">
@@ -1500,13 +1514,13 @@
       setInterval(nextSlide, 3000);
     });
 
-    function goToAppStore() {
-      window.location.href = 'https://apps.apple.com/kr/app/%EC%95%8C%EB%A7%81/id6737599709'; // 여기에 앱스토어 URL 입력
-    }
+    // function goToAppStore() {
+    //   window.location.href = 'https://apps.apple.com/kr/app/%EC%95%8C%EB%A7%81/id6737599709'; // 여기에 앱스토어 URL 입력
+    // }
 
-    function goToGooglePlay() {
-      window.location.href = 'https://play.google.com/store/apps/details?id=com.siimtech.aling'; // 여기에 구글 플레이 URL 입력
-    }
+    // function goToGooglePlay() {
+    //   window.location.href = 'https://play.google.com/store/apps/details?id=com.siimtech.aling'; // 여기에 구글 플레이 URL 입력
+    // }
 
 
     
