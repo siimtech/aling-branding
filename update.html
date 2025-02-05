@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="Ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>앱 업데이트</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Pretendard', sans-serif;
+    }
+
+    .image-container,
+    .button-container {
+      max-width: 860px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      /* 이모지 포지셔닝을 위해 필요 */
+      overflow: hidden;
+      /* 넘치는 이모지 숨김 */
+    }
+
+    .image-container img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100vh;
+    }
+
+    /* 기존 스타일 수정 */
+    .icon {
+      position: absolute;
+      font-size: 50px;
+      bottom: -60px;
+      /* 초기 위치를 섹션 하단 바깥으로 설정 */
+      opacity: 0;
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      /* 부드러운 이징 효과 */
+      z-index: 10;
+    }
+
+    .icon.visible {
+      bottom: 300px;
+      /* 섹션 하단에서 20px 위로 이동 */
+      opacity: 1;
+    }
+
+    .icon.fade-out {
+      bottom: 200px;
+      /* 섹션 상단 방향으로 이동 */
+      opacity: 0;
+    }
+
+    /* 개별 이모지 위치 조정 */
+    .smile {
+      left: calc(30% - 60px);
+      
+    }
+
+    .heart {
+      left: calc(60% + 20px);
+    }
+  </style>
+
+  </style>
+</head>
+
+<body class="bg-gray-100 flex flex-col items-center justify-between min-h-screen">
+  <!-- Section 1 -->
+  <div class="image-container w-full max-w-md mx-auto">
+    <img src="./img/appupdate1.png" alt="Section 1">
+  </div>
+
+  <!-- Section 2 -->
+  <div class="image-container w-full max-w-md mx-auto">
+    <img src="./img/appupdate2.png" alt="Section 2">
+    <!-- 하트 아이콘 추가 -->
+    <div class="icon heart">❤️</div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="image-container w-full max-w-md mx-auto">
+    <img src="./img/appupdate3.png" alt="Section 3">
+    <!-- 웃는 스마일 아이콘만 유지 -->
+    <div class="icon smile">😊</div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="image-container w-full max-w-md mx-auto">
+    <img src="./img/appupdate4.png" alt="Section 4">
+  </div>
+
+  <!-- Section 5 -->
+  <div class="image-container w-full max-w-md mx-auto">
+    <img src="./img/appupdate5.png" alt="Section 5">
+  </div>
+
+  <!-- Section 6 -->
+  <div class="image-container w-full max-w-md mx-auto">
+    <img src="./img/appupdate6.png" alt="Section 6">
+  </div>
+
+  <!-- Section 7: 앱 업데이트 버튼 -->
+  <div class="image-container w-full max-w-md mx-auto bg-white p-6 shadow-md mt-0 rounded-none">
+    <!-- 앱 업데이트 버튼 -->
+    <button id="submitButton" type="button"
+      class="w-full bg-[#ff4a22] text-white text-lg font-bold py-3 rounded-lg shadow-lg my-6 hover:bg-[#192028]"
+      onclick="redirectToDownload()">
+      앱 업데이트
+    </button>
+  </div>
+
+
+
+
+
+  <script>
+    function redirectToDownload() {
+      // 사용자 OS 감지
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      // iOS 기기에서 iOS 다운로드 링크로 리디렉션
+      if (/iPhone|iPad|iPod/i.test(userAgent)) {
+        window.location.href = "https://apps.apple.com/kr/app/%EC%95%8C%EB%A7%81/id6737599709";  // iOS 링크
+      }
+      // Android 기기에서 Android 다운로드 링크로 리디렉션
+      else if (/android/i.test(userAgent)) {
+        window.location.href = "https://play.google.com/store/apps/details?id=com.siimtech.aling";  // Android 링크
+      } else {
+        alert("지원되지 않는 플랫폼입니다.");
+      }
+    }
+
+    // 스크롤 이벤트 처리
+    window.addEventListener('scroll', function () {
+      const section2 = document.querySelector('.image-container:nth-of-type(2)');
+      const section3 = document.querySelector('.image-container:nth-of-type(3)');
+      const heart = document.querySelector('.heart');
+      const smile = document.querySelector('.smile');
+
+      const section2Rect = section2.getBoundingClientRect();
+      const section3Rect = section3.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // 하트 이모지 애니메이션 (섹션2)
+      if (section2Rect.top < windowHeight * 0.8 && section2Rect.bottom > windowHeight * 0.2) {
+        heart.classList.add('visible');
+        heart.classList.remove('fade-out');
+      } else {
+        heart.classList.remove('visible');
+        heart.classList.add('fade-out');
+      }
+
+      // 웃는 얼굴 이모지 애니메이션 (섹션3)
+      if (section3Rect.top < windowHeight * 0.8 && section3Rect.bottom > windowHeight * 0.2) {
+        smile.classList.add('visible');
+        smile.classList.remove('fade-out');
+      } else {
+        smile.classList.remove('visible');
+        smile.classList.add('fade-out');
+      }
+    });
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>
