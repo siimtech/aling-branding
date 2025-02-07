@@ -57,11 +57,45 @@
     /* 개별 이모지 위치 조정 */
     .smile {
       left: calc(30% - 60px);
-      
+
     }
 
     .heart {
       left: calc(60% + 20px);
+    }
+
+    /* 기존 스타일 하단에 추가 */
+    .fixed-button-container {
+      background-color: rgba(255, 255, 255, 0.5);
+      /* 반투명한 흰색 배경 */
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      /* Safari 지원 */
+      transition: background-color 0.3s ease;
+    }
+
+    .fixed-button-container:hover {
+      background-color: rgba(255, 255, 255, 0.7);
+      /* 호버 시 약간 더 불투명하게 */
+    }
+
+
+    #submitButton {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+
+    @media (max-width: 768px) {
+      .fixed-button-container {
+        padding: 1rem;
+        /* 모바일에서 패딩 조정 */
+      }
+    }
+
+    @media (max-width: 640px) {
+      .fixed.bottom-0 {
+        padding-bottom: calc(env(safe-area-inset-bottom, 0.5rem) + 1.5rem);
+      }
     }
   </style>
 
@@ -70,47 +104,57 @@
 
 <body class="bg-gray-100 flex flex-col items-center justify-between min-h-screen">
   <!-- Section 1 -->
-  <div class="image-container w-full max-w-md mx-auto">
+  <div class="image-container w-full max-w-md mx-auto flex justify-center">
     <img src="./img/appupdate1.png" alt="Section 1">
   </div>
 
   <!-- Section 2 -->
-  <div class="image-container w-full max-w-md mx-auto">
+  <div class="image-container w-full max-w-md mx-auto flex justify-center">
     <img src="./img/appupdate2.png" alt="Section 2">
     <!-- 하트 아이콘 추가 -->
     <div class="icon heart">❤️</div>
   </div>
 
   <!-- Section 3 -->
-  <div class="image-container w-full max-w-md mx-auto">
+  <div class="image-container w-full max-w-md mx-auto flex justify-center">
     <img src="./img/appupdate3.png" alt="Section 3">
     <!-- 웃는 스마일 아이콘만 유지 -->
     <div class="icon smile">😊</div>
   </div>
 
   <!-- Section 4 -->
-  <div class="image-container w-full max-w-md mx-auto">
+  <div class="image-container w-full max-w-md mx-auto flex justify-center">
     <img src="./img/appupdate4.png" alt="Section 4">
   </div>
 
   <!-- Section 5 -->
-  <div class="image-container w-full max-w-md mx-auto">
+  <div class="image-container w-full max-w-md mx-auto flex justify-center">
     <img src="./img/appupdate5.png" alt="Section 5">
   </div>
 
   <!-- Section 6 -->
-  <div class="image-container w-full max-w-md mx-auto">
+  <div class="image-container w-full max-w-md mx-auto flex justify-center">
     <img src="./img/appupdate6.png" alt="Section 6">
   </div>
 
-  <!-- Section 7: 앱 업데이트 버튼 -->
-  <div class="image-container w-full max-w-md mx-auto bg-white p-6 shadow-md mt-0 rounded-none">
-    <!-- 앱 업데이트 버튼 -->
-    <button id="submitButton" type="button"
-      class="w-full bg-[#ff4a22] text-white text-lg font-bold py-3 rounded-lg shadow-lg my-6 hover:bg-[#192028]"
-      onclick="redirectToDownload()">
-      앱 업데이트
-    </button>
+    <!-- Section 7 -->
+    <div class="image-container w-full max-w-md mx-auto flex justify-center">
+      <img src="./img/appupdate7.png" alt="Section 7">
+    </div>
+
+  <!-- 기존 Section 7 코드 대체 -->
+  <div class="fixed bottom-0 left-0 right-0 p-4 pb-6 z-50 flex justify-center">
+    <div class="w-full max-w-md">
+      <button id="submitButton" type="button"
+        class="w-full bg-[#192028] text-white text-lg font-bold py-3 rounded-lg shadow-lg hover:bg-[#ff4a22] transition-all duration-300"
+        onclick="redirectToDownload()">
+        앱 업데이트
+      </button>
+    </div>
+  </div>
+
+
+
   </div>
 
 
