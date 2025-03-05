@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="Ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>인플루언서 알링 매뉴얼</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background-color: #f5f5f5;
+      /* 섹션 외 여백 색상 */
+    }
+
+    .image-container,
+    .button-container {
+      max-width: 860px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      /* 이모지 포지셔닝을 위해 필요 */
+      overflow: hidden;
+      /* 넘치는 이모지 숨김 */
+    }
+
+    .image-container img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100vh;
+    }
+
+
+
+    /* 기존 스타일 하단에 추가 */
+    .fixed-button-container {
+      background-color: rgba(255, 255, 255, 0.5);
+      /* 반투명한 흰색 배경 */
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      /* Safari 지원 */
+      transition: background-color 0.3s ease;
+    }
+
+    .fixed-button-container:hover {
+      background-color: rgba(255, 255, 255, 0.7);
+      /* 호버 시 약간 더 불투명하게 */
+    }
+
+
+    #submitButton {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+
+    @media (max-width: 768px) {
+      .fixed-button-container {
+        padding: 1rem;
+        /* 모바일에서 패딩 조정 */
+      }
+    }
+
+    @media (max-width: 640px) {
+      .fixed.bottom-0 {
+        padding-bottom: calc(env(safe-area-inset-bottom, 0.5rem) + 1.5rem);
+      }
+    }
+  </style>
+
+  </style>
+</head>
+
+<body class="bg-[#f5f5f5]">
+  <div class="flex flex-col items-center">
+    <!-- 섹션 1-11 -->
+    <div class="w-full max-w-md aspect-[9/16] relative overflow-hidden flex-shrink-0">
+      <img src="./img/manual_img/manual_main.png" alt="Section 1" class="w-full h-full object-cover">
+    </div>
+
+    <!-- 목차 섹션 -->
+    <div class="w-full max-w-md bg-white p-6 px-10">
+      <p class="text-base mb-4 text-gray-700 text-center mt-12">
+        알링은 처음이라 당황스럽죠?<br>가이드를 따라 차근차근 거래를 진행해주세요.<br> 아래의 목차를 누르면 바로 이동가능합니다.
+      </p>
+      <h2 class="text-2xl font-bold text-center mb-4 mt-20">매뉴얼 목차</h2>
+      <ul class="space-y-2">
+        <li><a href="#section2" class="text-[#ff4a22] hover:text-black transition-colors">1. 프로필 편집</a></li>
+        <li><a href="#section3" class="text-[#ff4a22] hover:text-black transition-colors">2. 포트폴리오 수정</a></li>
+        <li><a href="#section4" class="text-[#ff4a22] hover:text-black transition-colors">3. 소개글 작성/알림 메모</a></li>
+        <li><a href="#section5" class="text-[#ff4a22] hover:text-black transition-colors">4. 채널 추가</a></li>
+        <li><a href="#section6" class="text-[#ff4a22] hover:text-black transition-colors">5. 포트폴리오 업로드</a></li>
+        <li><a href="#section7" class="text-[#ff4a22] hover:text-black transition-colors">6. 상품 등록 </a></li>
+        <li><a href="#section8" class="text-[#ff4a22] hover:text-black transition-colors">7. 활동가능 일시설정</a></li>
+        <li><a href="#section9" class="text-[#ff4a22] hover:text-black transition-colors">8. 프로젝트 진행 및 완료</a></li>
+        <li><a href="#section10" class="text-[#ff4a22] hover:text-black transition-colors">9. 정산 요청</a></li>
+        <li><a href="#section11" class="text-[#ff4a22] hover:text-black transition-colors">10. 알림 설정</a></li>
+      </ul>
+    </div>
+
+
+    <div id="section2" class="w-full max-w-md aspect-[9/16] relative overflow-hidden flex-shrink-0">
+      <img src="./img/manual_img/manual_01.png" alt="Section 2" class="w-full h-full object-cover">
+    </div>
+
+    <div id="section3" class="w-full max-w-md aspect-[9/16] relative overflow-hidden flex-shrink-0">
+      <img src="./img/manual_img/manual_02.png" alt="Section 3" class="w-full h-full object-cover">
+    </div>
+
+    <div id="section4" class="w-full max-w-md aspect-[9/16] relative overflow-hidden flex-shrink-0">
+      <img src="./img/manual_img/manual_03.png" alt="Section 4" class="w-full h-full object-cover">
+    </div>
+
+    <div id="section5" class="w-full max-w-md aspect-[9/16] relative overflow-hidden flex-shrink-0">
+      <img src="./img/manual_img/manual_04.png" alt="Section 5" class="w-full h-full object-cover">
+    </div>
+
+    <div id="section6" class="w-full max-w-md aspect-[9/16] relative overflow-hidden flex-shrink-0">
+      <img src="./img/manual_img/manual_05.png" alt="Section 6" class="w-full h-full object-cover">
+    </div>
+
+    <div id="section7" class="w-full max-w-md aspect-[9/16] relative overflow-hidden flex-shrink-0">
+      <img src="./img/manual_img/manual_06.png" alt="Section 7" class="w-full h-full object-cover">
+    </div>
+
+    <div id="section8" class="w-full max-w-md aspect-[9/16] relative overflow-hidden flex-shrink-0">
+      <img src="./img/manual_img/manual_07.png" alt="Section 8" class="w-full h-full object-cover">
+    </div>
+
+    <div id="section9" class="w-full max-w-md aspect-[9/16] relative overflow-hidden flex-shrink-0">
+      <img src="./img/manual_img/manual_08.png" alt="Section 9" class="w-full h-full object-cover">
+    </div>
+
+    <div id="section10" class="w-full max-w-md aspect-[9/16] relative overflow-hidden flex-shrink-0">
+      <img src="./img/manual_img/manual_09.png" alt="Section 10" class="w-full h-full object-cover">
+    </div>
+
+    <div id="section11" class="w-full max-w-md aspect-[9/16] relative overflow-hidden flex-shrink-0">
+      <img src="./img/manual_img/manual_10.png" alt="Section 11" class="w-full h-full object-cover">
+    </div>
+
+
+    <!-- 기존 Section 7 코드 대체 -->
+    <div class="fixed bottom-0 left-0 right-0 p-4 pb-6 z-50 flex justify-center">
+      <div class="w-full max-w-md">
+        <button id="submitButton" type="button"
+          class="w-full bg-[#192028] text-white text-lg font-bold py-3 rounded-lg shadow-lg hover:bg-[#ff4a22] transition-all duration-300"
+          onclick="redirectToDownload()">
+          앱 업데이트
+        </button>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+  <script>
+    function redirectToDownload() {
+      // 사용자 OS 감지
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      // iOS 기기에서 iOS 다운로드 링크로 리디렉션
+      if (/iPhone|iPad|iPod/i.test(userAgent)) {
+        window.location.href = "https://apps.apple.com/kr/app/%EC%95%8C%EB%A7%81/id6737599709";  // iOS 링크
+      }
+      // Android 기기에서 Android 다운로드 링크로 리디렉션
+      else if (/android/i.test(userAgent)) {
+        window.location.href = "https://play.google.com/store/apps/details?id=com.siimtech.aling";  // Android 링크
+      } else {
+        alert("지원되지 않는 플랫폼입니다.");
+      }
+    }
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>

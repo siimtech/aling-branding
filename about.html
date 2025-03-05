@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="Ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>알링 앱 소개</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Pretendard', sans-serif;
+    }
+
+    /* 파트너 섹션 애니메이션을 위한 CSS */
+    @keyframes scrollPartners {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .partner-scroll {
+      display: flex;
+      width: max-content;
+      animation: scrollPartners 20s linear infinite;
+    }
+
+    /* 파트너 로고 스타일 */
+    .partner-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      margin: 0 16px;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+
+    /* 모든 섹션을 max-w-md(448px)로 통일 */
+    .section {
+      width: 100%;
+      max-width: 448px;
+      /* Tailwind의 max-w-md 적용 */
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* 섹션 2 기본 스타일 */
+    .section-2-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .section-2 {
+      width: 100%;
+      max-width: 448px;
+      /* Tailwind의 max-w-md 적용 */
+      background-color: #1C1B1F;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 0;
+    }
+
+    /* 텍스트 컨테이너 */
+    .text-container {
+      width: 100%;
+      max-width: 448px;
+      text-align: center;
+      color: white;
+    }
+
+    /* 섹션 2 내부의 이미지 컨테이너 */
+    .image-container {
+      width: calc(448px - 120px);
+      /* 448px - (120px * 2) */
+      max-width: 328px;
+      /* 양쪽 120px 마진을 뺀 나머지 너비 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 이미지 크기 조정 */
+    .image-container img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* 점을 감싸는 컨테이너 */
+    .dot-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      /* 점 간격 */
+      align-items: center;
+    }
+
+    /* 개별 점 스타일 */
+    .dot {
+      width: 6px;
+      height: 6px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      transition: opacity 0.3s ease-in-out;
+      /* 부드러운 애니메이션 */
+    }
+
+    /* 두 번째 점 (60% 불투명도) */
+    .dot:nth-child(2) {
+      opacity: 0.6;
+    }
+
+    /* 세 번째 점 (20% 불투명도) */
+    .dot:nth-child(3) {
+      opacity: 0.2;
+    }
+
+
+    /* 후기 이미지 크기 조정 */
+    .carousel-img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* 추가할 CSS */
+    .swiper {
+      width: 100%;
+      height: auto;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 페이지네이션 점(bullets) 색상 변경 */
+    .swiper-pagination-bullet {
+      background-color: #cccccc;
+      /* 비활성 점 색상 */
+      opacity: 0.6;
+    }
+
+    .swiper-pagination-bullet-active {
+      background-color: #ff4a22;
+      /* 활성 점 색상 - 앱의 주요 색상으로 설정 */
+      opacity: 1;
+    }
+
+    /* 네비게이션 화살표 색상 변경 */
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #ff4a22;
+      /* 화살표 색상 - 앱의 주요 색상으로 설정 */
+    }
+
+    /* 선택적: 화살표 호버 효과 */
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      color: #192028;
+      /* 호버 시 색상 변경 */
+    }
+
+    /* 선택적: 화살표 크기 조정 */
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+      font-size: 24px;
+      /* 화살표 크기 조정 */
+    }
+
+
+    /* 초기 상태: 투명하고 아래로 이동된 상태 */
+    .fade-in-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    /* 화면에 보이는 상태 */
+    .fade-in-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 초기 상태: 언더라인 숨김 */
+    .underline-animation {
+      position: relative;
+      display: inline-block;
+    }
+
+    .underline-animation::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      /* 텍스트 바로 아래 */
+      left: 0;
+      width: 0;
+      /* 초기 너비 0 */
+      height: 4px;
+      /* 언더라인 두께 */
+      background-color: #FFD700;
+      /* 노란색 (#FFD700) */
+      transition: width 0.8s ease-out;
+      /* 애니메이션 효과 */
+    }
+
+    /* 스크롤 시 보이는 상태 */
+    .underline-animation.visible::after {
+      width: 100%;
+      /* 전체 너비로 확장 */
+    }
+
+
+    /* 기존 스타일 하단에 추가 */
+    .fixed-button-container {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 448px;
+      /* 🎯 max-w-md (448px) 고정 */
+      background-color: rgba(255, 255, 255, 0.9);
+      /* 반투명 배경 */
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 16px;
+      text-align: center;
+      z-index: 100;
+      /* 🎯 CTA 버튼을 모든 요소 위로 */
+    }
+
+    /* 버튼 자체 스타일 */
+    #submitButton {
+      width: 100%;
+      background-color: #192028;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 12px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    #submitButton:hover {
+      background-color: #ff4a22;
+    }
+
+
+    /* 텍스트 중앙 정렬을 위한 추가 스타일 */
+    .content-center {
+      text-align: center;
+    }
+
+    /* 모든 섹션의 내용 중앙 정렬 */
+    .section-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* 좌우 정렬 유지하되 모바일에서는 중앙 정렬 */
+    @media (max-width: 768px) {
+      .md\:text-left {
+        text-align: center !important;
+      }
+
+      .flex-col-reverse {
+        flex-direction: column-reverse;
+      }
+
+      .fixed-button-container {
+        padding: 1rem;
+      }
+    }
+
+    @media (max-width: 868px) {
+      .section-2 {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .fixed.bottom-0 {
+        padding-bottom: calc(env(safe-area-inset-bottom, 0.5rem) + 1.5rem);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 flex flex-col items-center justify-between min-h-screen">
+  <!-- Section 1 -->
+  <div class="image-container w-full max-w-md mx-auto flex justify-center">
+    <img src="./img/introduction_main.png" alt="Section 1">
+  </div>
+
+
+  <div class="section-2-wrapper">
+    <div class="section-2 max-w-md w-full py-[72px]">
+      <!-- 1. 텍스트 -->
+      <div class="text-container text-center px-4 fade-in-on-scroll">
+        <p class="font-medium text-[14px] text-[#ff4a22] leading-tight">
+          매출 때문에<br>고민이 있나요?
+        </p>
+      </div>
+
+      <!-- 2. 텍스트 -->
+      <div class="text-container text-center px-4 mt-[36px] fade-in-on-scroll">
+        <p class="text-white text-[24px] leading-tight font-semibold">
+          이런 고민을 하고 계시다면<br>알링과 함께 하세요!
+        </p>
+      </div>
+
+      <!-- 이미지 -->
+      <div class="image-container w-full flex justify-center mt-[52px] fade-in-on-scroll">
+        <img src="./img/concern1.png" alt="Section 2 - Image 1">
+      </div>
+      <div class="image-container w-full flex justify-center mt-[52px] fade-in-on-scroll">
+        <img src="./img/concern2.png" alt="Section 2 - Image 2">
+      </div>
+      <div class="image-container w-full flex justify-center mt-[52px] fade-in-on-scroll">
+        <img src="./img/concern3.png" alt="Section 2 - Image 3">
+      </div>
+
+      <!-- 점 -->
+      <div class="dot-container w-full flex flex-col justify-center items-center mt-[52px] fade-in-on-scroll">
+        <div class="dot bg-white w-[6px] h-[6px] rounded-full"></div>
+        <div class="dot bg-white w-[6px] h-[6px] rounded-full opacity-60"></div>
+        <div class="dot bg-white w-[6px] h-[6px] rounded-full opacity-20"></div>
+      </div>
+
+      <!-- 마지막 텍스트 -->
+      <div class="text-container text-white text-center px-4 mt-[52px] fade-in-on-scroll">
+        <p class="text-sm">
+          지역에 딱맞는,<br>
+          핫한❤️‍🔥 인플루언서를<br>
+          딱 찾을 수 있으니깐
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 섹션 3: 후기 이미지 캐러셀 -->
+  <div class="section-3-wrapper">
+    <div class="section-3 bg-white py-12 w-full">
+      <div class="max-w-md w-full mx-auto px-4">
+        <!-- 제목 -->
+        <h2 class="text-center text-2xl font-semibold mb-6 mt-[24px]">생생한 사업자님들의 후기 👑</h2>
+
+        <!-- Swiper 컨테이너 (단순화된 구조) -->
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <!-- 첫 번째 후기 이미지 -->
+            <div class="swiper-slide">
+              <img src="./img/review1.png" alt="후기 이미지 1" class="carousel-img">
+            </div>
+            <!-- 두 번째 후기 이미지 -->
+            <div class="swiper-slide">
+              <img src="./img/review2.png" alt="후기 이미지 2" class="carousel-img">
+            </div>
+            <!-- 세 번째 후기 이미지 -->
+            <div class="swiper-slide">
+              <img src="./img/review3.png" alt="후기 이미지 3" class="carousel-img">
+            </div>
+            <!-- 네 번째 후기 이미지 -->
+            <div class="swiper-slide">
+              <img src="./img/review4.png" alt="후기 이미지 4" class="carousel-img">
+            </div>
+          </div>
+
+          <!-- 캐러셀 네비게이션 (화살표) -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+
+          <!-- 캐러셀 페이지네이션 (점) -->
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section-4-wrapper">
+    <div class="section-4 bg-white py-8 w-full">
+      <div class="max-w-md w-full mx-auto px-4">
+        <!-- 상단 텍스트 컨테이너 -->
+        <div class="text-container text-center mb-8">
+          <h2 class="text-center text-2xl font-semibold mb-6 mt-[24px] text-black">이런 사장님들께 추천해요👑</h2>
+        </div>
+
+        <!-- 통합된 박스 -->
+        <div class="flex flex-col gap-6 rounded-xl p-6">
+          <!-- 첫 번째 병렬 구조 -->
+          <div class="flex flex-col md:flex-row items-center gap-6">
+            <!-- 이미지 컨테이너 -->
+            <div class="w-full md:w-1/3 flex justify-center">
+              <img src="./img/anxious-face-with-sweat.gif" alt="알링 서비스 소개" class="w-[70%] h-auto rounded-lg">
+            </div>
+            <!-- 텍스트 컨테이너 -->
+            <div class="w-full md:w-2/3 text-center">
+              <h3 class="font-bold text-2xl mb-3 text-[#ff4a22] underline-animation text-center">
+                case01.<br>극내향형 사장님
+              </h3>
+              <p class="text-gray-700 mb-4 text-[18px] text-center">
+                스케줄, 가격 등 DM으로<br>
+                물어보기 어렵죠?<br>
+              </p>
+            </div>
+          </div>
+
+          <!-- 두 번째 병렬 구조 -->
+          <div class="flex flex-col md:flex-row items-center gap-6">
+            <!-- 텍스트 컨테이너 -->
+            <div class="w-full md:w-1/2 text-center order-2 md:order-1">
+              <p class="text-gray-700 mb-4 text-[16px] text-center">
+                지역 인플루언서와<br>
+                광고 상품과<br>
+                금액을 한눈에 파악
+              </p>
+            </div>
+            <!-- 이미지 컨테이너 -->
+            <div class="w-full md:w-1/2 flex justify-center order-1 md:order-2">
+              <img src="./img/features1.png" alt="알링 서비스 소개" class="w-full h-auto rounded-lg">
+            </div>
+          </div>
+
+          <!-- 세 번째 병렬 구조 -->
+          <div class="flex flex-col md:flex-row items-center gap-6">
+            <!-- 이미지 컨테이너 -->
+            <div class="w-full md:w-1/2 flex justify-center">
+              <img src="./img/features2.png" alt="알링 서비스 소개" class="w-full h-auto rounded-lg">
+            </div>
+            <!-- 텍스트 컨테이너 -->
+            <div class="w-full md:w-1/2 text-center">
+              <p class="text-gray-700 mb-4 text-[16px] text-center">
+                촬영가능일정 스케쥴도<br>
+                한눈에 파악해서<br>
+                바로 거래 가능!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section-5-wrapper">
+    <div class="section-4 bg-white py-8 w-full">
+      <div class="max-w-md w-full mx-auto px-4">
+        <!-- 통합된 박스 -->
+        <div class="flex flex-col gap-6 rounded-xl p-6">
+          <!-- 첫 번째 병렬 구조 -->
+          <div class="flex flex-col md:flex-row items-center gap-6">
+            <!-- 이미지 컨테이너 -->
+            <div class="w-full md:w-1/3 flex justify-center">
+              <img src="./img/face-with-monocle.gif" alt="알링 서비스 소개" class="w-[70%] h-auto rounded-lg">
+            </div>
+            <!-- 텍스트 컨테이너 -->
+            <div class="w-full md:w-2/3 text-center">
+              <h3 class="font-bold text-2xl mb-3 text-[#ff4a22] underline-animation text-center">case02.<br>결과,성과 위주 사장님
+              </h3>
+              <p class="text-gray-700 mb-4 text-[18px] text-center">
+                진행한 광고가<br>
+                진짜 효과 있는지 궁금한 사장님,<br>
+                알링이 있어요!<br>
+              </p>
+            </div>
+          </div>
+
+          <!-- 두 번째 병렬 구조 -->
+          <div class="flex flex-col md:flex-row items-center gap-6">
+            <!-- 텍스트 컨테이너 -->
+            <div class="w-full md:w-1/2 text-center order-2 md:order-1">
+              <p class="text-gray-700 mb-4 text-center">
+                작업물의<br>
+                성과, 반응률<br>
+                그래프 확인 가능👏
+              </p>
+            </div>
+            <!-- 이미지 컨테이너 -->
+            <div class="w-full md:w-1/2 flex justify-center order-1 md:order-2">
+              <img src="./img/featuers3.png" alt="알링 서비스 소개" class="w-full h-auto rounded-lg">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="section-6-wrapper">
+    <div class="section-4 bg-white py-8 w-full">
+      <div class="max-w-md w-full mx-auto px-4">
+        <!-- 통합된 박스 -->
+        <div class="flex flex-col gap-6 rounded-xl p-6">
+          <!-- 첫 번째 병렬 구조 -->
+          <div class="flex flex-col md:flex-row items-center gap-6">
+            <!-- 이미지 컨테이너 -->
+            <div class="w-full md:w-1/3 flex justify-center">
+              <img src="./img/money-mouth-face.gif" alt="알링 서비스 소개" class="w-[70%] h-auto rounded-lg">
+            </div>
+            <!-- 텍스트 컨테이너 -->
+            <div class="w-full md:w-2/3 text-center">
+              <h3 class="font-bold text-2xl mb-3 text-[#ff4a22] underline-animation text-center">case03.<br>신용카드위주 사장님
+              </h3>
+              <p class="text-gray-700 mb-4 text-[18px] text-center">
+                신용카드 결제도 가능!<br>
+                세금도 꼼꼼히 챙겨드려요
+              </p>
+            </div>
+          </div>
+          <div class="text-center max-w-2xl mx-auto px-4 my-6">
+            <h2 class="text-2xl font-bold mb-4 text-center">인스타 DM이 아니라<br>"알링"을 써야 하는 이유!</h2>
+            <p class="text-sm text-gray-700 text-center">
+              지역 소상공인에게 딱 맞는 합리적인 인플루언서를 쉽게 찾고,<br>가격과 상품을 한눈에 비교할 수 있어요.<br> 안전한 거래로 신뢰할 수 있는 마케팅 협업이 가능합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 수정된 Section 7: 협력 파트너 섹션 (하단 마진 48px 추가) -->
+  <div class="section-6-wrapper">
+    <section id="partners" class="py-12 bg-white pb-36 w-full">
+      <div class="max-w-md mx-auto px-4 w-full">
+        <h2 class="text-2xl font-bold text-center mb-8">알링과 함께 하는<br><span class="text-[#ff4a22]">[지역 인디브랜드]</span></h2>
+
+        <!-- 파트너 로고 캐러셀 컨테이너 -->
+        <div class="relative overflow-hidden">
+          <!-- 파트너 로고 스크롤 래퍼 -->
+          <div class="flex flex-nowrap partner-scroll">
+            <!-- 협력업체 로고 - 원본 세트 -->
+            <div class="mx-4 flex-shrink-0 flex flex-col items-center">
+              <img src="./img/partners/partners1.png" alt="협력업체 1" class="w-16 h-16 rounded-full object-cover mb-2">
+              <span class="text-sm text-center">전포 바리치</span>
+            </div>
+            <div class="mx-4 flex-shrink-0 flex flex-col items-center">
+              <img src="./img/partners/partners2.png" alt="협력업체 2" class="w-16 h-16 rounded-full object-cover mb-2">
+              <span class="text-sm text-center">전포 상호미지수</span>
+            </div>
+            <div class="mx-4 flex-shrink-0 flex flex-col items-center">
+              <img src="./img/partners/partners3.png" alt="협력업체 3" class="w-16 h-16 rounded-full object-cover mb-2">
+              <span class="text-sm text-center">전포 백양육식장</span>
+            </div>
+            <div class="mx-4 flex-shrink-0 flex flex-col items-center">
+              <img src="./img/partners/partners4.png" alt="협력업체 4" class="w-16 h-16 rounded-full object-cover mb-2">
+              <span class="text-sm text-center">전포 요키크라브</span>
+            </div>
+            <div class="mx-4 flex-shrink-0 flex flex-col items-center">
+              <img src="./img/partners/partners5.jpeg" alt="협력업체 5" class="w-16 h-16 rounded-full object-cover mb-2">
+              <span class="text-sm text-center">전포 양아치</span>
+            </div>
+            <div class="mx-4 flex-shrink-0 flex flex-col items-center">
+              <img src="./img/partners/partners6.png" alt="협력업체 6" class="w-16 h-16 rounded-full object-cover mb-2">
+              <span class="text-sm text-center">밀락더마켓MTS</span>
+            </div>
+            <div class="mx-4 flex-shrink-0 flex flex-col items-center">
+              <img src="./img/partners/partners7.jpeg" alt="협력업체 7" class="w-16 h-16 rounded-full object-cover mb-2">
+              <span class="text-sm text-center">전포 소인수분해</span>
+            </div>
+            <div class="mx-4 flex-shrink-0 flex flex-col items-center">
+              <img src="./img/partners/partners8.jpeg" alt="협력업체 8" class="w-16 h-16 rounded-full object-cover mb-2">
+              <span class="text-sm text-center">전포 술나방바</span>
+            </div>
+
+            <!-- 로고 복제본 (무한 스크롤 효과를 위해) -->
+            <div class="mx-4 flex-shrink-0 flex flex-col items-center">
+              <img src="./img/partners/partners1.png" alt="협력업체 1" class="w-16 h-16 rounded-full object-cover mb-2">
+              <span class="text-sm text-center">전포 바리치</span>
+            </div>
+            <div class="mx-4 flex-shrink-0 flex flex-col items-center">
+              <img src="./img/partners/partners2.png" alt="협력업체 2" class="w-16 h-16 rounded-full object-cover mb-2">
+              <span class="text-sm text-center">전포 상호미지수</span>
+            </div>
+            <div class="mx-4 flex-shrink-0 flex flex-col items-center">
+              <img src="./img/partners/partners3.png" alt="협력업체 3" class="w-16 h-16 rounded-full object-cover mb-2">
+              <span class="text-sm text-center">전포 백양육식장</span>
+            </div>
+            <div class="mx-4 flex-shrink-0 flex flex-col items-center">
+              <img src="./img/partners/partners4.png" alt="협력업체 4" class="w-16 h-16 rounded-full object-cover mb-2">
+              <span class="text-sm text-center">전포 요키크라브</span>
+            </div>
+            <div class="mx-4 flex-shrink-0 flex flex-col items-center">
+              <img src="./img/partners/partners5.jpeg" alt="협력업체 5" class="w-16 h-16 rounded-full object-cover mb-2">
+              <span class="text-sm text-center">전포 양아치</span>
+            </div>
+            <div class="mx-4 flex-shrink-0 flex flex-col items-center">
+              <img src="./img/partners/partners6.png" alt="협력업체 6" class="w-16 h-16 rounded-full object-cover mb-2">
+              <span class="text-sm text-center">밀락더마켓MTS</span>
+            </div>
+            <div class="mx-4 flex-shrink-0 flex flex-col items-center">
+              <img src="./img/partners/partners7.jpeg" alt="협력업체 7" class="w-16 h-16 rounded-full object-cover mb-2">
+              <span class="text-sm text-center">전포 소인수분해</span>
+            </div>
+            <div class="mx-4 flex-shrink-0 flex flex-col items-center">
+              <img src="./img/partners/partners8.jpeg" alt="협력업체 8" class="w-16 h-16 rounded-full object-cover mb-2">
+              <span class="text-sm text-center">전포 술나방바</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 하단 고정 버튼 -->
+
+  <div class=" fixed bottom-0 left-0 right-0 p-4 pb-6 z-50 flex justify-center">
+    <div class="w-full max-w-md">
+      <button id="submitButton" type="button"
+        class="w-full bg-[#192028] text-white text-lg font-bold py-3 rounded-lg shadow-lg hover:bg-[#ff4a22] transition-all duration-300"
+        onclick="redirectToDownload()">
+        앱 업데이트
+      </button>
+    </div>
+  </div>
+
+  <script>
+
+    // DOMContentLoaded 이벤트 추가
+    document.addEventListener('DOMContentLoaded', function () {
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        centeredSlides: true,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    });
+
+
+    tailwind.config = {
+      theme: {
+        extend: {
+          animation: {
+            scroll: 'scrollPartners 20s linear infinite',
+          },
+        },
+      },
+    }
+
+
+
+
+
+    function redirectToDownload() {
+      // 사용자 OS 감지
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      // iOS 기기에서 iOS 다운로드 링크로 리디렉션
+      if (/iPhone|iPad|iPod/i.test(userAgent)) {
+        window.location.href = "https://apps.apple.com/kr/app/%EC%95%8C%EB%A7%81/id6737599709"; // iOS 링크
+      }
+      // Android 기기에서 Android 다운로드 링크로 리디렉션
+      else if (/android/i.test(userAgent)) {
+        window.location.href = "https://play.google.com/store/apps/details?id=com.siimtech.aling"; // Android 링크
+      } else {
+        alert("지원되지 않는 플랫폼입니다.");
+      }
+    }
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const elements = document.querySelectorAll(".fade-in-on-scroll");
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      });
+
+      elements.forEach((el) => observer.observe(el));
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const targets = document.querySelectorAll('.underline-animation');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible'); // visible 클래스 추가
+          }
+        });
+      });
+
+      targets.forEach((target) => observer.observe(target));
+    });
+
+
+
+
+  </script>
+</body>
+
+</html>
