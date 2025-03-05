@@ -80,7 +80,7 @@
     </div>
 
     <!-- 목차 섹션 -->
-    <div class="w-full max-w-md bg-white p-6 px-10">
+    <div id="contents" class="w-full max-w-md bg-white p-6 px-10">
       <p class="text-base mb-4 text-gray-700 text-center mt-12">
         알링은 처음이라 당황스럽죠?<br>가이드를 따라 차근차근 거래를 진행해주세요.<br> 아래의 목차를 누르면 바로 이동가능합니다.
       </p>
@@ -141,47 +141,47 @@
     </div>
 
 
-    <!-- 기존 Section 7 코드 대체 -->
+    <!-- 하단 고정 버튼 영역 -->
     <div class="fixed bottom-0 left-0 right-0 p-4 pb-6 z-50 flex justify-center">
-      <div class="w-full max-w-md">
-        <button id="submitButton" type="button"
+      <div class="w-full max-w-md relative">
+
+        <!-- 상단으로 가기 버튼 (투명한 하얀색, Section 2로 이동) -->
+        <button id="scrollToSection2Button" type="button"
+          class="absolute -top-14 left-1/2 transform -translate-x-1/2 bg-white text-gray-800 text-sm font-bold py-3 px-4 rounded-full shadow-md flex items-center space-x-2 transition-all duration-300"
+          style="background-color: rgba(255, 255, 255); backdrop-filter: blur(5px);"
+          onmouseover="this.style.backgroundColor='rgba(255, 255, 255)';"
+          onmouseout="this.style.backgroundColor='rgba(255, 255, 255)';" onclick="scrollToSection2()">
+           <span>⬆️ 목차로 이동</span>
+        </button>
+
+        <!-- 문의하기 버튼 -->
+        <button id="inquiryButton" type="button"
           class="w-full bg-[#192028] text-white text-lg font-bold py-3 rounded-lg shadow-lg hover:bg-[#ff4a22] transition-all duration-300"
-          onclick="redirectToDownload()">
-          앱 업데이트
+          onclick="redirectToInquiry()">
+          문의하러 가기👉
         </button>
       </div>
     </div>
 
-
-
-  </div>
-
-
-
-
-
-  <script>
-    function redirectToDownload() {
-      // 사용자 OS 감지
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-      // iOS 기기에서 iOS 다운로드 링크로 리디렉션
-      if (/iPhone|iPad|iPod/i.test(userAgent)) {
-        window.location.href = "https://apps.apple.com/kr/app/%EC%95%8C%EB%A7%81/id6737599709";  // iOS 링크
+    <script>
+      // Section 2로 부드럽게 스크롤 이동
+      function scrollToSection2() {
+        const section2 = document.getElementById("contents");
+        if (section2) {
+          section2.scrollIntoView({ behavior: "smooth" });
+        }
       }
-      // Android 기기에서 Android 다운로드 링크로 리디렉션
-      else if (/android/i.test(userAgent)) {
-        window.location.href = "https://play.google.com/store/apps/details?id=com.siimtech.aling";  // Android 링크
-      } else {
-        alert("지원되지 않는 플랫폼입니다.");
+
+      // 문의하기 버튼 링크 이동
+      function redirectToInquiry() {
+        window.location.href = "http://pf.kakao.com/_urzEn/chat";
       }
-    }
+    </script>
 
 
 
 
 
-  </script>
 
 </body>
 
