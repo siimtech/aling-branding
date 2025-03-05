@@ -128,6 +128,16 @@
       opacity: 0.2;
     }
 
+    .container {
+      width: 100%;
+      max-width: 448px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
 
     /* 후기 이미지 크기 조정 */
     .carousel-img {
@@ -330,8 +340,8 @@
 
       <!-- 2. 텍스트 -->
       <div class="text-container text-center px-4 mt-[36px] fade-in-on-scroll">
-        <p class="text-white text-[24px] leading-tight font-semibold">
-          이런 고민을 하고 계시다면<br>알링과 함께 하세요!
+        <p class="text-white text-[20px] leading-tight font-semibold">
+          소상공인을 위한 최적의 마케팅 솔루션
         </p>
       </div>
 
@@ -545,8 +555,53 @@
     </div>
   </div>
 
+  <!-- 비교 표 섹션 (섹션 6 아래) -->
+  <div class="section-6-wrapper w-full max-w-md mx-auto">
+    <div class="container bg-white py-8 w-full">
+      <h2 class="text-xl font-bold text-center mb-6 text-gray-900">인스타 DM vs 알링</h2>
+      <div class="max-w-md w-full mx-auto px-4">
+        <table class="w-full border-collapse border border-gray-300 text-xs">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border border-gray-300 p-2 text-gray-800">비교 항목</th>
+              <th class="border border-gray-300 p-2 text-gray-800">인스타 DM 광고</th>
+              <th class="border border-gray-300 p-2 text-gray-800">알링</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-300 p-2">광고 진행 속도</td>
+              <td class="border border-gray-300 p-2">1:1 상담 필요 (1~2일)</td>
+              <td class="border border-gray-300 p-2 font-semibold text-[#ff4a22]">1분 만에 광고 구매</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="border border-gray-300 p-2">가격 투명성</td>
+              <td class="border border-gray-300 p-2">협상 필요 (불확실)</td>
+              <td class="border border-gray-300 p-2 font-semibold text-[#ff4a22]">모든 광고 가격 한눈에 비교</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-2">성과 분석</td>
+              <td class="border border-gray-300 p-2">없음</td>
+              <td class="border border-gray-300 p-2 font-semibold text-[#ff4a22]">광고 효과 데이터 제공 📊</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="border border-gray-300 p-2">신뢰도</td>
+              <td class="border border-gray-300 p-2">개별 인플루언서 의존</td>
+              <td class="border border-gray-300 p-2 font-semibold text-[#ff4a22]">알링의 검증된 광고 채널</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-2">결제 방법</td>
+              <td class="border border-gray-300 p-2">개인 계좌이체</td>
+              <td class="border border-gray-300 p-2 font-semibold text-[#ff4a22]">카드 결제 & 세금 처리 가능 💳</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
   <!-- 수정된 Section 7: 협력 파트너 섹션 (하단 마진 48px 추가) -->
-  <div class="section-6-wrapper">
+  <div class="section-7-wrapper">
     <section id="partners" class="py-12 bg-white pb-36 w-full">
       <div class="max-w-md mx-auto px-4 w-full">
         <h2 class="text-2xl font-bold text-center mb-8">알링과 함께 하는<br><span class="text-[#ff4a22]">[지역 인디브랜드]</span></h2>
@@ -633,9 +688,9 @@
   <div class=" fixed bottom-0 left-0 right-0 p-4 pb-6 z-50 flex justify-center">
     <div class="w-full max-w-md">
       <button id="submitButton" type="button"
-        class="w-full bg-[#192028] text-white text-lg font-bold py-3 rounded-lg shadow-lg hover:bg-[#ff4a22] transition-all duration-300"
+        class="w-full bg-[#192028] text-white text-lg py-3 rounded-lg shadow-lg hover:bg-[#ff4a22] transition-all duration-300"
         onclick="redirectToDownload()">
-        앱 업데이트
+        앱 다운로드하고 🔥핫한 인플루언서 찾기
       </button>
     </div>
   </div>
