@@ -866,6 +866,20 @@
       });
     });
 
+    document.addEventListener('DOMContentLoaded', function () {
+      const targets = document.querySelectorAll('.underline-animation');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      });
+
+      targets.forEach((target) => observer.observe(target));
+    });
+
 
   </script>
 </body>
