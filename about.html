@@ -28,7 +28,7 @@
       }
     }
 
- 
+
 
     .partner-scroll {
       display: flex;
@@ -337,8 +337,6 @@
         padding-bottom: calc(env(safe-area-inset-bottom, 0.5rem) + 1.5rem);
       }
     }
-
-
   </style>
 </head>
 
@@ -431,6 +429,56 @@
       </div>
     </div>
   </div>
+
+
+  <!-- 새로운 섹션: 성과 섹션 -->
+  <div class="section-performance-wrapper">
+    <div class="section-performance bg-white py-12 w-full">
+      <div class="max-w-md w-full mx-auto px-4">
+        <h2 class="text-center text-2xl font-semibold mb-6">알링의 놀라운 성과 🚀</h2>
+        <div class="space-y-6">
+          <div class="bg-white p-4 rounded-lg flex flex-col md:flex-row items-center">
+            <div class="w-1/3 text-4xl font-bold text-[#ff4a22] text-center md:text-left mb-2 md:mb-0">
+              <span class="counter" data-target="245">0</span>K+
+            </div>
+            <div class="w-full md:w-2/3">
+              <p class="text-lg font-semibold text-center md:text-left">누적 조회수</p>
+              <p class="text-sm text-center md:text-left">알링의 지역 인플루언서 마케팅 캠페인이 폭발적인 관심을 받고 있습니다.</p>
+            </div>
+          </div>
+          <div class="bg-white p-4 rounded-lg flex flex-col sm:flex-row items-center">
+            <div class="w-1/3 text-4xl font-bold text-[#ff4a22] text-center md:text-left mb-2 md:mb-0">
+              <span class="counter" data-target="30">0</span>K+
+            </div>
+            <div class="w-full md:w-2/3">
+              <p class="text-lg font-semibold text-center md:text-left">평균 조회수</p>
+              <p class="text-sm text-center md:text-left">각 캠페인은 평균 3만 명 이상의 잠재 고객에게 도달합니다.</p>
+            </div>
+          </div>
+          <div class="bg-white p-4 rounded-lg flex flex-col sm:flex-row items-center">
+            <div class="w-1/3 text-4xl font-bold text-[#ff4a22] text-center md:text-left mb-2 md:mb-0">
+              <span class="counter" data-target="62">0</span>K+
+            </div>
+            <div class="w-full md:w-2/3">
+              <p class="text-lg font-semibold text-center md:text-left">최고 조회수</p>
+              <p class="text-sm text-center md:text-left">단일 캠페인으로 6만 명 이상의 고객에게 브랜드를 노출시킨 실적이 있습니다.</p>
+            </div>
+          </div>
+          <div class="bg-white p-4 rounded-lg flex flex-col sm:flex-row items-center">
+            <div class="w-1/3 text-4xl font-bold text-[#ff4a22] text-center md:text-left mb-2 md:mb-0">
+              <span class="counter" data-target="95">0</span>%
+            </div>
+            <div class="w-full md:w-2/3">
+              <p class="text-lg font-semibold text-center sm:text-left">고객 만족도</p>
+              <p class="text-sm text-center md:text-left">알링을 통해 진행된 캠페인의 결과에 만족하신 고객들이 재구매를 선택하고 있습니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
   <!-- Section 4 -->
   <div class="section-4-wrapper">
@@ -787,20 +835,36 @@
 
 
     document.addEventListener('DOMContentLoaded', function () {
-      const targets = document.querySelectorAll('.underline-animation');
+      const counters = document.querySelectorAll('.counter');
+      const speed = 200;
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible'); // visible 클래스 추가
+            const counter = entry.target;
+            const updateCount = () => {
+              const target = +counter.getAttribute('data-target');
+              const count = +counter.innerText.replace(/[^\d]/g, '');
+              const inc = Math.ceil(target / speed);
+
+              if (count < target) {
+                counter.innerText = (count + inc).toLocaleString();
+                setTimeout(updateCount, 1);
+              } else {
+                counter.innerText = target.toLocaleString();
+              }
+            };
+
+            updateCount();
+            observer.unobserve(counter); // 한 번 애니메이션이 시작되면 관찰 중지
           }
         });
+      }, { threshold: 0.5 }); // 요소의 50%가 보일 때 트리거
+
+      counters.forEach(counter => {
+        observer.observe(counter);
       });
-
-      targets.forEach((target) => observer.observe(target));
     });
-
-
 
 
   </script>
